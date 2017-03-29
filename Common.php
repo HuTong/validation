@@ -3,7 +3,7 @@ namespace HuTong\Validation;
 /**
 * 数据验证
 */
-class Validation
+class Common
 {
 	public static function isMobile($val)
 	{
@@ -17,7 +17,7 @@ class Validation
 
 	public static function isIp($val, $type = 0)
 	{
-		switch ($type) 
+		switch ($type)
 		{
 			case 1:
 				return (bool)filter_var($val, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
@@ -36,7 +36,7 @@ class Validation
 	// 必须添加http
 	public static function isUrl($val, $type = 0)
 	{
-		switch ($type) 
+		switch ($type)
 		{
 			case 0:
 				//要求 URL 是 RFC 兼容 URL。（比如：http://example）
@@ -109,8 +109,8 @@ class Validation
 		return preg_match("/^[a-zA-Z\d]+$/", $val);
 	}
 
-	public static function isPasswd($val, $len = 6) {
-		return preg_match('/^[.a-z_0-9-!@#$%\^&*()]{' . $len . ',32}$/ui', $val) ? true : false;
+	public static function isPassword($val, $min = 6, $max = 32) {
+		return preg_match('/^[.a-zA-Z_0-9-!@#$%\^&*()]{' . $min . ','.$max.'}$/ui', $val) ? true : false;
 	}
 
 	public static function isNickname($val) {
